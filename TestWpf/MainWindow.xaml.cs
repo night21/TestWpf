@@ -24,5 +24,33 @@ namespace TestWpf
         {
             InitializeComponent();
         }
+
+        private void StackPanel_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = (bool)chkBoxInner.IsChecked;
+            tBlock.Text += RoutedEventArgsToString(e, "inner StackPanel");
+        }
+
+        private void StackPanelOuter_Click(object sender, RoutedEventArgs e)
+        {
+            e.Handled = (bool)chkBoxOuter.IsChecked;
+            tBlock.Text += RoutedEventArgsToString(e, "outer StackPanel");
+        }
+
+        private string RoutedEventArgsToString(RoutedEventArgs e, string prefix)
+        {
+            return prefix + " " + e.Source.ToString() + " " + e.RoutedEvent.RoutingStrategy.ToString() + " " + e.Handled.ToString() + "\n";
+        }
+
+        private void StackPanel_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            e.Handled = (bool)chkBox.IsChecked;
+            tBlock.Text += "MouseDown " + e.Source.ToString() + " " + e.Handled.ToString() + "\n"; 
+        }
+
+        private void StackPanel_PreviewMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            tBlock.Text += "MouseUp " + e.Source.ToString() + " " + e.Handled.ToString() + "\n";
+        }
     }
 }

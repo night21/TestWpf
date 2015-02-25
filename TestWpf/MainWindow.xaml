@@ -1,8 +1,19 @@
 ﻿<Window x:Class="TestWpf.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TestWpf"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+    <StackPanel Orientation="Vertical" Button.Click="StackPanelOuter_Click" PreviewMouseDown="StackPanel_PreviewMouseDown" PreviewMouseUp="StackPanel_PreviewMouseUp" Focusable="False">
+        <local:NameGetter />
+        <CheckBox x:Name="chkBox" Content="Handle mosue down preview event" />
+        <CheckBox x:Name="chkBoxInner" Content="Handle Click event in inner stackPanel eventHandler" />
+        <CheckBox x:Name="chkBoxOuter" Content="Handle Click event in outer stackPanel eventHandler" />
+        <StackPanel  Orientation="Horizontal" Height="50" Button.Click="StackPanel_Click" Focusable="True">
+            <Button Content="Btn1"/>
+            <Button Content="Btn2" Focusable="False"/>
+            <Button Content="Btn3"/>
+            <Button Content="Btn4"/>
+        </StackPanel>
+        <TextBlock x:Name="tBlock" Focusable="True" Height="Auto" VerticalAlignment="Stretch"/>
+    </StackPanel>
 </Window>
