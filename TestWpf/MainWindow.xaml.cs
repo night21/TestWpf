@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,14 @@ namespace TestWpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ObservableCollection<string> _buttonListBox = new ObservableCollection<string> { "Egy", "Ketto" };
+
+        public ObservableCollection<string> ButtionListBox { get { return _buttonListBox; } set { _buttonListBox = value; } }
+
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = this;
         }
 
         private void StackPanel_Click(object sender, RoutedEventArgs e)
